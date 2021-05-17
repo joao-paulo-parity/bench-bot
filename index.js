@@ -6,7 +6,7 @@ module.exports = app => {
 
   app.on('issue_comment', async context => {
     let commentText = context.payload.comment.body;
-    if (!commentText.startsWith("/bench")) {
+    if (context.payload.action !== "created" || !commentText.startsWith("/bench")) {
       return;
     }
 
